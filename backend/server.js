@@ -8,9 +8,11 @@ app.use(bodyParser.json());
 
 const authRoutes = require("./routes/authRoutes");
 const taskRoutes = require("./routes/taskRoutes");
+const notificationRoutes=require("./routes/notificationRoutes")
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/notifications",notificationRoutes)
 
 app.get("/", (req, res) => {
   res.send("Task Management Backend is running 🚀");
