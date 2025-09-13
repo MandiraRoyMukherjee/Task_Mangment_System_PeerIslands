@@ -1,4 +1,4 @@
-// Create an overdue test task for user ID 1 (Mandira)
+
 const db = require('./config/db');
 
 console.log('🧪 Creating overdue test task for user ID 1...\n');

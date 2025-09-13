@@ -2,18 +2,18 @@
 require('dotenv').config();
 const cron = require("node-cron");
 const nodemailer = require("nodemailer");
-const db = require("./config/db"); // your db.js file
+const db = require("./config/db"); 
 
-// Configure email transport
+
 const transporter = nodemailer.createTransport({
-  service: "gmail", // or Outlook, Yahoo, etc.
+  service: "gmail", 
   auth: {
-    user: process.env.EMAIL_USER, // set in .env
+    user: process.env.EMAIL_USER, 
     pass: process.env.EMAIL_PASS,
   },
 });
 
-// Send reminder mail
+
 function sendReminder(email, task, timeLeft) {
   const mailOptions = {
     from: process.env.EMAIL_USER,
@@ -46,7 +46,7 @@ Task Management System`,
   });
 }
 
-// Run every minute for more accurate timing
+
 cron.schedule("* * * * *", () => {
   console.log("⏰ Running reminder job...");
 
@@ -72,17 +72,16 @@ cron.schedule("* * * * *", () => {
 
       console.log(`📋 Task: ${task.title}, Due in: ${diffHours.toFixed(2)} hours (${diffMinutes.toFixed(0)} minutes)`);
 
-      // send before 1 day (24 hours ± 1 hour)
       if (diffHours <= 25 && diffHours >= 23) {
         console.log(`📧 Sending 1-day reminder for: ${task.title}`);
         sendReminder(task.email, task, "1 day");
       }
-      // send before 1 hour (1 hour ± 30 minutes)
+
       else if (diffMinutes <= 90 && diffMinutes >= 30) {
         console.log(`📧 Sending 1-hour reminder for: ${task.title}`);
         sendReminder(task.email, task, "1 hour");
       }
-      // Debug: Show why tasks don't trigger reminders
+ 
       else if (diffMinutes > 0 && diffMinutes < 30) {
         console.log(`⏰ Task "${task.title}" is due soon (${diffMinutes.toFixed(0)} min) but outside reminder window`);
       }

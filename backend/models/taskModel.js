@@ -27,7 +27,7 @@ const Task = {
     ], callback);
   },
   update: (id, task, callback) => {
-    // Build dynamic SQL based on provided fields
+
     const fields = [];
     const values = [];
     
