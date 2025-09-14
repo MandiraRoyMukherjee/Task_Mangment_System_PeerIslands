@@ -41,7 +41,7 @@ Task Management System`,
     if (err) {
       console.error("❌ Error sending email:", err);
     } else {
-      console.log("📧 Reminder sent successfully to:", emaaail);
+      console.log("📧 Reminder sent successfully to:", email);
     }
   });
 }
