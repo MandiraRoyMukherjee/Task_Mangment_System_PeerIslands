@@ -15,7 +15,7 @@ export default function TaskList({ onMarkDone, onEditTask }) {
   async function fetchTasks() {
     try {
       const res = await getTasks();
-      setTasks(res.data || res); // Handle both response structures
+      setTasks(res.data || res); 
     } catch (err) {
       console.error("Error fetching tasks:", err);
       alert("Failed to fetch tasks: " + (err.response?.data?.error || err.message));
@@ -35,7 +35,7 @@ export default function TaskList({ onMarkDone, onEditTask }) {
   }, []);
 
   const filtered = tasks.filter(t => {
-    // Only show non-completed tasks in the main list
+
     if (t.status === "Done") return false;
     if (filter.status && t.status !== filter.status) return false;
     if (filter.priority && t.priority !== filter.priority) return false;

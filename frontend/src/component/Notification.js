@@ -14,7 +14,6 @@ export default function Notifications(){
       console.log("📡 Notifications API response:", res.data);
       console.log("📡 Response status:", res.status);
       
-      // Handle different response structures
       if (res.data && Array.isArray(res.data)) {
         console.log("✅ Using res.data directly, found", res.data.length, "notifications");
         setNotes(res.data);
@@ -38,7 +37,7 @@ export default function Notifications(){
 
   useEffect(()=> {
     fetchNotes();
-    const iv = setInterval(fetchNotes, 30_000); // poll every 30 seconds for real-time updates
+    const iv = setInterval(fetchNotes, 30_000); 
     return ()=>clearInterval(iv);
   },[]);
 
@@ -74,7 +73,7 @@ export default function Notifications(){
 
   const getTimeRemaining = (minutes) => {
     if (minutes <= 0) {
-      // Task is overdue
+
       const overdueMinutes = Math.abs(minutes);
       if (overdueMinutes < 60) {
         return `Overdue by ${overdueMinutes} minutes`;

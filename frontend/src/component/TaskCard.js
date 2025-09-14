@@ -5,7 +5,7 @@ export default function TaskCard({ task, onUpdated, onMarkDone, onEdit }) {
   async function markDone() {
     try {
       await API.put(`/tasks/${task.id}`, { status: "Done" });
-      // Call the onMarkDone callback to move task to completed section
+
       if (onMarkDone) {
         onMarkDone(task);
       }

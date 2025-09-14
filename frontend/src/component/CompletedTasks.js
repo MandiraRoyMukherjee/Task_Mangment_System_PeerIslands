@@ -4,13 +4,11 @@ import { getTasks } from "../api/taskapi";
 export default function CompletedTasks({ completedTasks, onMarkDone }) {
   const [fetchedCompletedTasks, setFetchedCompletedTasks] = useState([]);
 
-  // Fetch completed tasks from backend
   useEffect(() => {
     async function fetchCompletedTasks() {
       try {
         const res = await getTasks();
         const allTasks = res.data || res;
-        // Filter only completed tasks
         const completed = allTasks.filter(task => task.status === "Done");
         setFetchedCompletedTasks(completed);
       } catch (err) {
@@ -20,7 +18,6 @@ export default function CompletedTasks({ completedTasks, onMarkDone }) {
     
     fetchCompletedTasks();
     
-    // Listen for task updates
     const onUpdated = () => fetchCompletedTasks();
     window.addEventListener("taskUpdated", onUpdated);
     window.addEventListener("taskCreated", onUpdated);
@@ -31,8 +28,7 @@ export default function CompletedTasks({ completedTasks, onMarkDone }) {
     };
   }, []);
 
-  // Combine fetched tasks with locally added tasks (for immediate UI updates)
-  // Remove duplicates by using task ID as key
+
   const allCompletedTasks = [...fetchedCompletedTasks];
   completedTasks.forEach(localTask => {
     if (!allCompletedTasks.find(task => task.id === localTask.id)) {

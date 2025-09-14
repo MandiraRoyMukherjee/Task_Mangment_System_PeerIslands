@@ -10,13 +10,12 @@ export default function Dashboard() {
   const [completedTasks, setCompletedTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
 
-  // Clear local completed tasks on page load to avoid duplicates
   useEffect(() => {
     setCompletedTasks([]);
   }, []);
 
   const handleMarkDone = (task) => {
-    // Add the completed task to the completed tasks list for immediate UI update
+
     setCompletedTasks(prev => [task, ...prev]);
   };
 

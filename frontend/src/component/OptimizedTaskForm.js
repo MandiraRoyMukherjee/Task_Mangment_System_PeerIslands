@@ -18,7 +18,7 @@ export default function OptimizedTaskForm() {
     recurrence_pattern: ""
   });
 
-  // Update form when editing task changes
+
   useEffect(() => {
     if (editingTask) {
       setForm({

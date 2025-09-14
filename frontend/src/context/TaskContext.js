@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import { taskAPI } from '../api/taskapi';
 
-// Action Types
+
 const TASK_ACTIONS = {
   FETCH_TASKS_START: 'FETCH_TASKS_START',
   FETCH_TASKS_SUCCESS: 'FETCH_TASKS_SUCCESS',

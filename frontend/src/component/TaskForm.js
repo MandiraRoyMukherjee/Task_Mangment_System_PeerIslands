@@ -18,7 +18,7 @@ export default function TaskForm({ onCreated, onMarkDone, editingTask, onEditCom
   });
   const [isEditing, setIsEditing] = useState(false);
 
-  // Update form when editingTask changes
+
   useEffect(() => {
     if (editingTask) {
       setIsEditing(true);
@@ -66,7 +66,7 @@ export default function TaskForm({ onCreated, onMarkDone, editingTask, onEditCom
       console.log("Submitting task:", payload);
       
       if (isEditing && editingTask) {
-        // Update existing task
+
         const response = await updateTask(editingTask.id, payload);
         console.log("Task update response:", response);
         alert("✅ Task updated successfully");
@@ -74,20 +74,20 @@ export default function TaskForm({ onCreated, onMarkDone, editingTask, onEditCom
         if (onEditComplete) onEditComplete();
         window.dispatchEvent(new Event("taskUpdated"));
       } else {
-        // Create new task
+
         const response = await createTask(payload);
         console.log("Task creation response:", response);
         
-        // Show different success message based on status
+    
         if (payload.status === "Done") {
           alert("✅ Task created and marked as completed!");
         } else {
           alert("✅ Task created successfully");
         }
 
-        // If task is created as "Done", move it to completed section
+
         if (payload.status === "Done" && onMarkDone) {
-          // Create a task object with the response data
+      
           const createdTask = {
             id: response.data?.taskId || response.taskId,
             title: payload.title,
@@ -107,7 +107,7 @@ export default function TaskForm({ onCreated, onMarkDone, editingTask, onEditCom
         window.dispatchEvent(new Event("taskCreated"));
       }
 
-      // Reset form
+
       setForm({
         title: "",
         description: "",
